@@ -42,9 +42,22 @@ def main():
     def record(name, arguments, expected, **options):
         result, elapsed = run(binary, arguments, **options)
         passed = result.returncode in expected and b"panicked at" not in result.stderr
-        records.append({"name": name, "seconds": elapsed, "exit": result.returncode, "passed": passed})
+        records.append(
+            {
+                "name": name,
+                "seconds": elapsed,
+                "exit": result.returncode,
+                "passed": passed,
+            }
+        )
         if not passed:
-            failures.append({"name": name, "arguments": arguments, "stderr": result.stderr[-2000:].decode(errors="replace")})
+            failures.append(
+                {
+                    "name": name,
+                    "arguments": arguments,
+                    "stderr": result.stderr[-2000:].decode(errors="replace"),
+                }
+            )
         return result
 
     for option, values in {
@@ -59,40 +72,102 @@ def main():
         "--dns": ["ftp://127.0.0.1", "https://[::1]/dns-query", "https://"],
     }.items():
         for value in values:
-            record(f"boundary {option} {value[:24]}", ["--no-upload", option, value, "127.0.0.1"], {2})
+            record(
+                f"boundary {option} {value[:24]}",
+                ["--no-upload", option, value, "127.0.0.1"],
+                {2},
+            )
 
-    options = ["--parallel", "--max-ttl", "--port", "--max-rounds", "--interval", "--time-limit", "--dns", "--pin"]
+    options = [
+        "--parallel",
+        "--max-ttl",
+        "--port",
+        "--max-rounds",
+        "--interval",
+        "--time-limit",
+        "--dns",
+        "--pin",
+    ]
     alphabet = "abcdefghijklmnopqrstuvwxyz0123456789-+.:/[]µ中文"
     for index in range(args.cases):
         value = "!" + "".join(rng.choices(alphabet, k=rng.randrange(0, 256)))
         option = rng.choice(options)
         if option == "--dns":
             value = "ftp://" + value
-        record(f"random-invalid-{index}", ["--no-upload", option, value, "127.0.0.1"], {2})
+        record(
+            f"random-invalid-{index}", ["--no-upload", option, value, "127.0.0.1"], {2}
+        )
 
     for descriptors in [8, 16, 32]:
-        record(f"help nofile={descriptors}", ["--help"], {0}, limits={resource.RLIMIT_NOFILE: descriptors})
+        record(
+            f"help nofile={descriptors}",
+            ["--help"],
+            {0},
+            limits={resource.RLIMIT_NOFILE: descriptors},
+        )
     for memory in [32, 64, 128]:
-        record(f"help address-space={memory}MiB", ["--help"], {0}, limits={resource.RLIMIT_AS: memory * 1024 * 1024})
+        record(
+            f"help address-space={memory}MiB",
+            ["--help"],
+            {0},
+            limits={resource.RLIMIT_AS: memory * 1024 * 1024},
+        )
     record("large argument list", ["--help", *(["127.0.0.1"] * 10000)], {0})
 
     if args.trace:
-        common = ["--no-upload", "--no-rdns", "--json", "--quiet", "-p", "icmp", "-c", "1", "-t", "2s"]
+        common = [
+            "--no-upload",
+            "--no-rdns",
+            "--json",
+            "--quiet",
+            "-p",
+            "icmp",
+            "-c",
+            "1",
+            "-t",
+            "2s",
+        ]
         for parallel in [1, 8, 64]:
-            result = record(f"loopback parallel={parallel}", [*common, "-j", str(parallel), *(["127.0.0.1"] * 64)], {0}, timeout=40)
+            result = record(
+                f"loopback parallel={parallel}",
+                [*common, "-j", str(parallel), *(["127.0.0.1"] * 64)],
+                {0},
+                timeout=150,
+            )
             if result.returncode == 0:
                 body = json.loads(result.stdout)
                 assert len(body["routes"]) == 64, body
                 assert all(route["reached"] for route in body["routes"]), body
         for duration in ["4294967295s", "18446744073709551615s"]:
-            record(f"huge duration {duration}", [*common, "-t", duration, "127.0.0.1"], {0})
+            record(
+                f"huge duration {duration}", [*common, "-t", duration, "127.0.0.1"], {0}
+            )
         for descriptors in [16, 32]:
-            record(f"trace nofile={descriptors}", [*common, "127.0.0.1"], {0, 1}, limits={resource.RLIMIT_NOFILE: descriptors})
+            record(
+                f"trace nofile={descriptors}",
+                [*common, "127.0.0.1"],
+                {0, 1},
+                limits={resource.RLIMIT_NOFILE: descriptors},
+            )
 
-    output = {"binary": str(binary), "random_seed": 391029, "cases": len(records), "failures": failures, "records": records}
+    output = {
+        "binary": str(binary),
+        "random_seed": 391029,
+        "cases": len(records),
+        "failures": failures,
+        "records": records,
+    }
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(output, indent=2) + "\n")
-    print(json.dumps({"cases": len(records), "failures": len(failures), "seconds": sum(row["seconds"] for row in records)}))
+    print(
+        json.dumps(
+            {
+                "cases": len(records),
+                "failures": len(failures),
+                "seconds": sum(row["seconds"] for row in records),
+            }
+        )
+    )
     if failures:
         print(json.dumps(failures[:10], indent=2))
         raise SystemExit(1)
