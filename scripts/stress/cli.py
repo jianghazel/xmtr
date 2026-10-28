@@ -124,8 +124,6 @@ def main():
             "icmp",
             "-c",
             "1",
-            "-t",
-            "2s",
         ]
         for parallel in [1, 8, 64]:
             result = record(
