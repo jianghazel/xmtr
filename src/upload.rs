@@ -52,6 +52,10 @@ fn agent(url: &str, dns: &Dns) -> Result<Agent> {
     }
     let uri: Uri = url.parse().with_context(|| format!("parsing {url}"))?;
     let host = uri.host().context("gateway URL has no host")?;
+    let host = host
+        .strip_prefix('[')
+        .and_then(|host| host.strip_suffix(']'))
+        .unwrap_or(host);
     let port = uri
         .port_u16()
         .unwrap_or(if uri.scheme_str() == Some("http") {
@@ -95,4 +99,16 @@ pub fn upload(api: &str, body: &Upload, dns: &Dns) -> Result<UploadAccepted> {
                 .to_owned()
         });
     bail!("upload rejected with HTTP {}: {reason}", status.as_u16())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn custom_resolver_accepts_an_ipv6_gateway_literal() {
+        let dns = Dns::new(&"127.0.0.1:9".parse().unwrap()).unwrap();
+        agent("http://[::1]:8080/api/v1/traces", &dns).unwrap();
+        agent("http://127.0.0.1:8080/api/v1/traces", &dns).unwrap();
+    }
 }

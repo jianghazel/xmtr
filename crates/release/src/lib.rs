@@ -144,30 +144,50 @@ pub fn fetch_verified(agent: &Agent, tag: &str, file: &str) -> Result<Vec<u8>> {
 }
 
 /// The xmtr executable inside a release archive.
+fn read_binary(entry: impl Read, size: u64) -> Result<Vec<u8>> {
+    if size > MAX_ASSET_BYTES {
+        bail!(
+            "{} exceeds the {MAX_ASSET_BYTES}-byte binary limit",
+            exe_name()
+        );
+    }
+    let mut binary = Vec::new();
+    entry
+        .take(MAX_ASSET_BYTES + 1)
+        .read_to_end(&mut binary)
+        .context("reading the xmtr binary")?;
+    if binary.len() as u64 > MAX_ASSET_BYTES {
+        bail!(
+            "{} exceeds the {MAX_ASSET_BYTES}-byte binary limit",
+            exe_name()
+        );
+    }
+    Ok(binary)
+}
+
+/// The xmtr executable inside a release archive.
 #[cfg(windows)]
 pub fn extract_binary(archive: &[u8]) -> Result<Vec<u8>> {
     let mut zip = zip::ZipArchive::new(Cursor::new(archive)).context("opening the zip archive")?;
-    let mut entry = zip
+    let entry = zip
         .by_name(exe_name())
         .with_context(|| format!("the archive has no {}", exe_name()))?;
-    let mut binary = Vec::new();
-    entry.read_to_end(&mut binary)?;
-    Ok(binary)
+    let size = entry.size();
+    read_binary(entry, size)
 }
 
 #[cfg(not(windows))]
 pub fn extract_binary(archive: &[u8]) -> Result<Vec<u8>> {
     let mut tar = tar::Archive::new(flate2::read::GzDecoder::new(archive));
     for entry in tar.entries().context("reading the tar archive")? {
-        let mut entry = entry?;
+        let entry = entry?;
         if entry
             .path()?
             .file_name()
             .is_some_and(|name| name == exe_name())
         {
-            let mut binary = Vec::new();
-            entry.read_to_end(&mut binary)?;
-            return Ok(binary);
+            let size = entry.size();
+            return read_binary(entry, size);
         }
     }
     bail!("the archive has no {}", exe_name())
@@ -342,5 +362,63 @@ mod tests {
             sha256_hex(b"abc"),
             "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
         );
+    }
+
+    #[cfg(not(windows))]
+    fn binary_archive(size: u64) -> Vec<u8> {
+        let gzip = flate2::write::GzEncoder::new(Vec::new(), flate2::Compression::fast());
+        let mut archive = tar::Builder::new(gzip);
+        let mut header = tar::Header::new_gnu();
+        header.set_size(size);
+        header.set_mode(0o755);
+        header.set_cksum();
+        archive
+            .append_data(&mut header, exe_name(), std::io::repeat(0).take(size))
+            .unwrap();
+        archive.into_inner().unwrap().finish().unwrap()
+    }
+
+    #[cfg(windows)]
+    fn binary_archive(size: u64) -> Vec<u8> {
+        let mut archive = zip::ZipWriter::new(Cursor::new(Vec::new()));
+        archive
+            .start_file(
+                exe_name(),
+                zip::write::SimpleFileOptions::default()
+                    .compression_method(zip::CompressionMethod::Deflated),
+            )
+            .unwrap();
+        std::io::copy(&mut std::io::repeat(0).take(size), &mut archive).unwrap();
+        archive.finish().unwrap().into_inner()
+    }
+
+    #[test]
+    fn extracts_a_small_binary() {
+        assert_eq!(extract_binary(&binary_archive(32)).unwrap(), vec![0; 32]);
+    }
+
+    #[test]
+    fn rejects_a_binary_larger_than_the_download_limit() {
+        let archive = binary_archive(MAX_ASSET_BYTES + 1);
+        assert!(archive.len() < 1024 * 1024);
+        let Err(error) = extract_binary(&archive) else {
+            panic!("accepted an oversized binary");
+        };
+        assert!(error.to_string().contains("exceeds"), "{error:#}");
+    }
+
+    #[test]
+    fn accepts_a_binary_at_the_limit() {
+        let archive = binary_archive(MAX_ASSET_BYTES);
+        assert_eq!(
+            extract_binary(&archive).unwrap().len() as u64,
+            MAX_ASSET_BYTES
+        );
+    }
+
+    #[test]
+    fn bounds_the_reader_when_the_declared_size_is_smaller() {
+        let error = read_binary(std::io::repeat(0), 0).unwrap_err();
+        assert!(error.to_string().contains("exceeds"), "{error:#}");
     }
 }

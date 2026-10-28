@@ -64,12 +64,11 @@ fn job_label(job: &Job, protocol: Protocol) -> String {
 /// route keeps probing until this many rounds; capping it at what fits in the time limit keeps such
 /// leftovers short.
 fn tracer_rounds(settings: &Settings) -> usize {
-    let interval = settings
-        .interval
-        .max(Duration::from_millis(100))
-        .as_secs_f64();
-    let fit = (settings.time_limit.as_secs_f64() / interval).ceil() as usize + 1;
-    settings.max_rounds.min(fit.max(1))
+    let interval = settings.interval.max(Duration::from_millis(100));
+    let fit = settings.time_limit.as_nanos().div_ceil(interval.as_nanos()) + 1;
+    settings
+        .max_rounds
+        .min(usize::try_from(fit).unwrap_or(usize::MAX))
 }
 
 /// Every concurrent tracer gets its own ICMP identifier, UDP source port and sequence range,
@@ -289,4 +288,48 @@ pub fn run_all(jobs: &[Job], parallel: usize, settings: &Settings, board: &Board
         }
     });
     outcomes.into_inner().unwrap_or_default()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn settings(time_limit: Duration, interval: Duration) -> Settings {
+        Settings {
+            privilege: PrivilegeMode::Privileged,
+            min_rounds: 5,
+            max_rounds: 30,
+            time_limit,
+            interval,
+            max_ttl: 30,
+            tcp_port: 443,
+        }
+    }
+
+    #[test]
+    fn round_budget_keeps_the_partial_round_and_final_poll() {
+        for (limit, interval, expected) in [
+            (Duration::from_secs(45), Duration::from_secs(1), 30),
+            (Duration::from_secs(1), Duration::from_millis(100), 11),
+            (Duration::from_millis(1001), Duration::from_millis(100), 12),
+            (Duration::from_secs(1), Duration::from_secs(2), 2),
+        ] {
+            assert_eq!(tracer_rounds(&settings(limit, interval)), expected);
+        }
+    }
+
+    #[test]
+    fn round_budget_caps_durations_larger_than_usize_rounds() {
+        for limit in [
+            Duration::from_secs(u64::from(u32::MAX)),
+            Duration::from_secs(u64::MAX),
+            Duration::MAX,
+        ] {
+            assert_eq!(
+                tracer_rounds(&settings(limit, Duration::from_millis(100))),
+                30
+            );
+        }
+        assert_eq!(tracer_rounds(&settings(Duration::MAX, Duration::MAX)), 2);
+    }
 }

@@ -1,0 +1,93 @@
+name: Boundary and legacy stress
+
+on:
+  push:
+    branches: [audit/stress]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  native:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        rust: ["1.88.0", stable]
+    steps:
+      - uses: actions/checkout@v5
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: ${{ matrix.rust }}
+          components: rustfmt, clippy
+      - run: cargo fmt --all --check
+      - run: cargo clippy --workspace --all-targets --locked -- -D warnings
+      - run: cargo test --workspace --locked
+      - run: cargo test --locked stress:: -- --ignored --nocapture --test-threads=1
+      - run: cargo build --locked
+      - run: sudo python3 scripts/stress/cli.py target/debug/xmtr --cases 2000 --trace --output target/stress/native.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: native-${{ matrix.rust }}
+          path: target/stress
+
+  platforms:
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v5
+      - uses: dtolnay/rust-toolchain@stable
+      - run: cargo test --workspace --locked
+
+  x86-32:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: "1.88.0"
+          targets: i686-unknown-linux-gnu
+      - run: sudo apt-get update -qq && sudo apt-get install -y gcc-multilib
+      - run: cargo test --workspace --locked --target i686-unknown-linux-gnu
+
+  legacy-userspace:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - image: centos:7
+            target: x86_64-unknown-linux-gnu
+          - image: debian:jessie
+            target: x86_64-unknown-linux-gnu
+          - image: ubuntu:14.04
+            target: x86_64-unknown-linux-gnu
+          - image: alpine:3.5
+            target: x86_64-unknown-linux-musl
+    steps:
+      - uses: actions/checkout@v5
+      - name: Fetch and verify published 0.3.0 compatibility fixture
+        env:
+          TARGET: ${{ matrix.target }}
+        run: |
+          mkdir -p target/legacy
+          cd target/legacy
+          curl -fLsS "https://github.com/Alice39s/xmtr/releases/download/v0.3.0/xmtr-${TARGET}.tar.gz" -o "xmtr-${TARGET}.tar.gz"
+          curl -fLsS https://github.com/Alice39s/xmtr/releases/download/v0.3.0/SHA256SUMS -o SHA256SUMS
+          sha256sum --check SHA256SUMS --ignore-missing
+          tar --no-same-owner -xzf "xmtr-${TARGET}.tar.gz"
+      - name: Run published binary in old userspace on the runner kernel
+        env:
+          IMAGE: ${{ matrix.image }}
+        run: |
+          docker run --rm --network none --volume "$PWD/target/legacy:/work:ro" --workdir /work "$IMAGE" ./xmtr --version
+          docker run --rm --network none --volume "$PWD/target/legacy:/work:ro" --workdir /work "$IMAGE" ./xmtr --no-upload --no-rdns -p icmp -c 1 -t 2s 127.0.0.1

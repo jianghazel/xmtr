@@ -10,6 +10,9 @@ mod plan;
 mod runner;
 mod upload;
 
+#[cfg(test)]
+mod stress;
+
 use std::io::IsTerminal;
 use std::process::ExitCode;
 use std::sync::Arc;
