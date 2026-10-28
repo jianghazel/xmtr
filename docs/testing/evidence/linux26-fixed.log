@@ -1,0 +1,326 @@
+c[?7l[2J[0mSeaBIOS (version 1.16.3-debian-1.16.3-2)
+Booting from ROM...
+Probing EDD (edd=off to disable)... oc[?7l[2Jc[?7l[2J[    0.000000] Initializing cgroup subsys cpuset
+[    0.000000] Initializing cgroup subsys cpu
+[    0.000000] Linux version 2.6.32-5-amd64 (Debian 2.6.32-48squeeze20) (ben@decadent.org.uk) (gcc version 4.3.5 (Debian 4.3.5-4) ) #1 SMP Mon Feb 29 00:33:51 UTC 2016
+[    0.000000] Command line: console=ttyS0 rdinit=/init panic=-1
+[    0.000000] KERNEL supported cpus:
+[    0.000000]   Intel GenuineIntel
+[    0.000000]   AMD AuthenticAMD
+[    0.000000]   Centaur CentaurHauls
+[    0.000000] BIOS-provided physical RAM map:
+[    0.000000]  BIOS-e820: 0000000000000000 - 000000000009fc00 (usable)
+[    0.000000]  BIOS-e820: 000000000009fc00 - 00000000000a0000 (reserved)
+[    0.000000]  BIOS-e820: 00000000000f0000 - 0000000000100000 (reserved)
+[    0.000000]  BIOS-e820: 0000000000100000 - 000000000ffe0000 (usable)
+[    0.000000]  BIOS-e820: 000000000ffe0000 - 0000000010000000 (reserved)
+[    0.000000]  BIOS-e820: 00000000fffc0000 - 0000000100000000 (reserved)
+[    0.000000]  BIOS-e820: 000000fd00000000 - 0000010000000000 (reserved)
+[    0.000000] DMI not present or invalid.
+[    0.000000] last_pfn = 0xffe0 max_arch_pfn = 0x400000000
+[    0.000000] x86 PAT enabled: cpu 0, old 0x7040600070406, new 0x7010600070106
+[    0.000000] init_memory_mapping: 0000000000000000-000000000ffe0000
+[    0.000000] RAMDISK: 0f1b6000 - 0ffdf047
+[    0.000000] ACPI: RSDP 00000000000f5290 00014 (v00 BOCHS )
+[    0.000000] ACPI: RSDT 000000000ffe1ce5 00034 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.000000] ACPI: FACP 000000000ffe1b91 00074 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.000000] ACPI: DSDT 000000000ffe0040 01B51 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.000000] ACPI: FACS 000000000ffe0000 00040
+[    0.000000] ACPI: APIC 000000000ffe1c05 00080 (v03 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.000000] ACPI: HPET 000000000ffe1c85 00038 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.000000] ACPI: WAET 000000000ffe1cbd 00028 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.000000] No NUMA configuration found
+[    0.000000] Faking a node at 0000000000000000-000000000ffe0000
+[    0.000000] Bootmem setup node 0 0000000000000000-000000000ffe0000
+[    0.000000]   NODE_DATA [0000000000009000 - 0000000000010fff]
+[    0.000000]   bootmap [0000000000011000 -  0000000000012fff] pages 2
+[    0.000000] (6 early reservations) ==> bootmem [0000000000 - 000ffe0000]
+[    0.000000]   #0 [0000000000 - 0000001000]   BIOS data page ==> [0000000000 - 0000001000]
+[    0.000000]   #1 [0000006000 - 0000008000]       TRAMPOLINE ==> [0000006000 - 0000008000]
+[    0.000000]   #2 [0001000000 - 00016da5c4]    TEXT DATA BSS ==> [0001000000 - 00016da5c4]
+[    0.000000]   #3 [000f1b6000 - 000ffdf047]          RAMDISK ==> [000f1b6000 - 000ffdf047]
+[    0.000000]   #4 [000009fc00 - 0000100000]    BIOS reserved ==> [000009fc00 - 0000100000]
+[    0.000000]   #5 [0000008000 - 0000009000]          PGTABLE ==> [0000008000 - 0000009000]
+[    0.000000] found SMP MP-table at [ffff8800000f5480] f5480
+[    0.000000] Zone PFN ranges:
+[    0.000000]   DMA      0x00000000 -> 0x00001000
+[    0.000000]   DMA32    0x00001000 -> 0x00100000
+[    0.000000]   Normal   0x00100000 -> 0x00100000
+[    0.000000] Movable zone start PFN for each node
+[    0.000000] early_node_map[2] active PFN ranges
+[    0.000000]     0: 0x00000000 -> 0x0000009f
+[    0.000000]     0: 0x00000100 -> 0x0000ffe0
+[    0.000000] ACPI: PM-Timer IO Port: 0x608
+[    0.000000] ACPI: LAPIC (acpi_id[0x00] lapic_id[0x00] enabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x01] lapic_id[0x01] enabled)
+[    0.000000] ACPI: LAPIC_NMI (acpi_id[0xff] dfl dfl lint[0x1])
+[    0.000000] ACPI: IOAPIC (id[0x00] address[0xfec00000] gsi_base[0])
+[    0.000000] IOAPIC[0]: apic_id 0, version 32, address 0xfec00000, GSI 0-23
+[    0.000000] ACPI: INT_SRC_OVR (bus 0 bus_irq 0 global_irq 2 dfl dfl)
+[    0.000000] ACPI: INT_SRC_OVR (bus 0 bus_irq 5 global_irq 5 high level)
+[    0.000000] ACPI: INT_SRC_OVR (bus 0 bus_irq 9 global_irq 9 high level)
+[    0.000000] ACPI: INT_SRC_OVR (bus 0 bus_irq 10 global_irq 10 high level)
+[    0.000000] ACPI: INT_SRC_OVR (bus 0 bus_irq 11 global_irq 11 high level)
+[    0.000000] Using ACPI (MADT) for SMP configuration information
+[    0.000000] ACPI: HPET id: 0x8086a201 base: 0xfed00000
+[    0.000000] SMP: Allowing 2 CPUs, 0 hotplug CPUs
+[    0.000000] PM: Registered nosave memory: 000000000009f000 - 00000000000a0000
+[    0.000000] PM: Registered nosave memory: 00000000000a0000 - 00000000000f0000
+[    0.000000] PM: Registered nosave memory: 00000000000f0000 - 0000000000100000
+[    0.000000] Allocating PCI resources starting at 10000000 (gap: 10000000:effc0000)
+[    0.000000] Booting paravirtualized kernel on bare hardware
+[    0.000000] NR_CPUS:512 nr_cpumask_bits:512 nr_cpu_ids:2 nr_node_ids:1
+[    0.000000] PERCPU: Embedded 29 pages/cpu @ffff880001800000 s86296 r8192 d24296 u1048576
+[    0.000000] pcpu-alloc: s86296 r8192 d24296 u1048576 alloc=1*2097152
+[    0.000000] pcpu-alloc: [0] 0 1
+[    0.000000] Built 1 zonelists in Node order, mobility grouping on.  Total pages: 64411
+[    0.000000] Policy zone: DMA32
+[    0.000000] Kernel command line: console=ttyS0 rdinit=/init panic=-1
+[    0.000000] PID hash table entries: 1024 (order: 1, 8192 bytes)
+[    0.000000] Initializing CPU#0
+[    0.000000] Checking aperture...
+[    0.000000] No AGP bridge found
+[    0.000000] Memory: 235476k/262016k available (3091k kernel code, 388k absent, 26152k reserved, 2040k data, 592k init)
+[    0.000000] SLUB: Genslabs=14, HWalign=64, Order=0-3, MinObjects=0, CPUs=2, Nodes=1
+[    0.000000] Hierarchical RCU implementation.
+[    0.000000] NR_IRQS:4352 nr_irqs:424
+[    0.000000] Console: colour *CGA 80x25
+[    0.000000] console [ttyS0] enabled
+[    0.000000] Fast TSC calibration using PIT
+[    0.000000] Detected 2595.482 MHz processor.
+[    0.008559] Calibrating delay loop (skipped), value calculated using timer frequency.. 5190.96 BogoMIPS (lpj=10381928)
+[    0.009850] Security Framework initialized
+[    0.010885] SELinux:  Disabled at boot.
+[    0.011700] Dentry cache hash table entries: 32768 (order: 6, 262144 bytes)
+[    0.012424] Inode-cache hash table entries: 16384 (order: 5, 131072 bytes)
+[    0.012741] Mount-cache hash table entries: 256
+[    0.019032] Initializing cgroup subsys ns
+[    0.019272] Initializing cgroup subsys cpuacct
+[    0.019441] Initializing cgroup subsys devices
+[    0.019560] Initializing cgroup subsys freezer
+[    0.019646] Initializing cgroup subsys net_cls
+[    0.021118] CPU: L1 I Cache: 64K (64 bytes/line), D cache 64K (64 bytes/line)
+[    0.021256] CPU: L2 Cache: 512K (64 bytes/line)
+[    0.021463] CPU 0/0x0 -> Node 0
+[    0.022579] CPU: Physical Processor ID: 0
+[    0.022655] CPU: Processor Core ID: 0
+[    0.022835] mce: CPU supports 10 MCE banks
+[    0.023499] using C1E aware idle routine
+[    0.023626] Performance Events: AMD PMU driver.
+[    0.023880] ... version:                0
+[    0.023940] ... bit width:              48
+[    0.024036] ... generic registers:      4
+[    0.024127] ... value mask:             0000ffffffffffff
+[    0.024200] ... max period:             00007fffffffffff
+[    0.024274] ... fixed-purpose events:   0
+[    0.024350] ... event mask:             000000000000000f
+[    0.037067] ACPI: Core revision 20090903
+[    0.055345] Setting APIC routing to flat
+[    0.057808] ..TIMER: vector=0x30 apic1=0 pin1=2 apic2=-1 pin2=-1
+[    0.098223] CPU0: AMD QEMU Virtual CPU version 2.5+ stepping 01
+[    0.102069] Booting processor 1 APIC 0x1 ip 0x6000
+[    0.012000] Initializing CPU#1
+[    0.012000] CPU: L1 I Cache: 64K (64 bytes/line), D cache 64K (64 bytes/line)
+[    0.012000] CPU: L2 Cache: 512K (64 bytes/line)
+[    0.012000] CPU 1/0x1 -> Node 0
+[    0.012000] CPU: Physical Processor ID: 0
+[    0.012000] CPU: Processor Core ID: 1
+[    0.193106] CPU1: AMD QEMU Virtual CPU version 2.5+ stepping 01
+[    0.194972] Brought up 2 CPUs
+[    0.195406] Total of 2 processors activated (10372.77 BogoMIPS).
+[    0.205011] devtmpfs: initialized
+[    0.220755] regulator: core version 0.5
+[    0.221590] NET: Registered protocol family 16
+[    0.225879] ACPI: bus type pci registered
+[    0.226897] PCI: Using configuration type 1 for base access
+[    0.227873] mtrr: your CPUs had inconsistent fixed MTRR settings
+[    0.228038] mtrr: your CPUs had inconsistent variable MTRR settings
+[    0.228265] mtrr: your CPUs had inconsistent MTRRdefType settings
+[    0.228421] mtrr: probably your BIOS does not setup all CPUs.
+[    0.228569] mtrr: corrected configuration.
+[    0.232715] bio: create slab <bio-0> at 0
+[    0.258809] ACPI: Interpreter enabled
+[    0.259005] ACPI: (supports S0 S3 S4 S5)
+[    0.260320] ACPI: Using IOAPIC for interrupt routing
+[    0.281551] ACPI: No dock devices found.
+[    0.283555] ACPI: PCI Root Bridge [PCI0] (0000:00)
+[    0.288200] pci 0000:00:01.3: quirk: region 0600-063f claimed by PIIX4 ACPI
+[    0.288582] pci 0000:00:01.3: quirk: region 0700-070f claimed by PIIX4 SMB
+[    0.506822] ACPI: PCI Interrupt Link [LNKA] (IRQs 5 *10 11)
+[    0.508271] ACPI: PCI Interrupt Link [LNKB] (IRQs 5 *10 11)
+[    0.508674] ACPI: PCI Interrupt Link [LNKC] (IRQs 5 10 *11)
+[    0.509409] ACPI: PCI Interrupt Link [LNKD] (IRQs 5 10 *11)
+[    0.509789] ACPI: PCI Interrupt Link [LNKS] (IRQs *9)
+[    0.512949] vgaarb: loaded
+[    0.513360] PCI: Using ACPI for IRQ routing
+[    0.521853] HPET: 3 timers in total, 0 timers will be used for per-cpu timer
+[    0.522241] hpet0: at MMIO 0xfed00000, IRQs 2, 8, 0
+[    0.522422] hpet0: 3 comparators, 64-bit 100.000000 MHz counter
+[    0.528375] Switching to clocksource hpet
+[    0.543765] pnp: PnP ACPI init
+[    0.544012] ACPI: bus type pnp registered
+[    0.548397] pnp: PnP ACPI: found 11 devices
+[    0.548891] ACPI: ACPI bus type pnp unregistered
+[    0.556565] NET: Registered protocol family 2
+[    0.557789] IP route cache hash table entries: 2048 (order: 2, 16384 bytes)
+[    0.560809] TCP established hash table entries: 8192 (order: 5, 131072 bytes)
+[    0.561517] TCP bind hash table entries: 8192 (order: 5, 131072 bytes)
+[    0.561827] TCP: Hash tables configured (established 8192 bind 8192)
+[    0.562065] TCP reno registered
+[    0.563099] NET: Registered protocol family 1
+[    0.563395] pci 0000:00:00.0: Limiting direct PCI/PCI transfers
+[    0.563656] pci 0000:00:01.0: PIIX3: Enabling Passive Release
+[    0.563960] pci 0000:00:01.0: Activating ISA DMA hang workarounds
+[    0.567080] Unpacking initramfs...
+[    1.248590] Freeing initrd memory: 14500k freed
+[    1.263041] audit: initializing netlink socket (disabled)
+[    1.263722] type=2000 audit(1793208233.260:1): initialized
+[    1.272129] HugeTLB registered 2 MB page size, pre-allocated 0 pages
+[    1.280579] VFS: Disk quotas dquot_6.5.2
+[    1.281050] Dquot-cache hash table entries: 512 (order 0, 4096 bytes)
+[    1.285673] msgmni has been set to 488
+[    1.292120] alg: No test for stdrng (krng)
+[    1.292877] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 253)
+[    1.293565] io scheduler noop registered
+[    1.293698] io scheduler anticipatory registered
+[    1.293825] io scheduler deadline registered
+[    1.294439] io scheduler cfq registered (default)
+[    1.304466] Linux agpgart interface v0.103
+[    1.304753] Serial: 8250/16550 driver, 4 ports, IRQ sharing enabled
+[    1.306573] serial8250: ttyS0 at I/O 0x3f8 (irq = 4) is a 16550A
+[    1.310215] 00:08: ttyS0 at I/O 0x3f8 (irq = 4) is a 16550A
+[    1.311544] input: Macintosh mouse button emulation as /devices/virtual/input/input0
+[    1.312795] PNP: PS/2 Controller [PNP0303:KBD,PNP0f13:MOU] at 0x60,0x64 irq 1,12
+[    1.314773] serio: i8042 KBD port at 0x60,0x64 irq 1
+[    1.315080] serio: i8042 AUX port at 0x60,0x64 irq 12
+[    1.316401] mice: PS/2 mouse device common for all mice
+[    1.317199] rtc_cmos 00:09: RTC can wake from S4
+[    1.318830] rtc_cmos 00:09: rtc core: registered rtc_cmos as rtc0
+[    1.319506] input: AT Translated Set 2 keyboard as /devices/platform/i8042/serio0/input/input1
+[    1.319694] rtc0: alarms up to one day, y3k, 242 bytes nvram, hpet irqs
+[    1.319951] cpuidle: using governor ladder
+[    1.320035] cpuidle: using governor menu
+[    1.320385] No iBFT detected.
+[    1.322144] TCP cubic registered
+[    1.322888] NET: Registered protocol family 10
+[    1.330804] Mobile IPv6
+[    1.331008] NET: Registered protocol family 17
+[    1.332923] registered taskstats version 1
+[    1.334595] rtc_cmos 00:09: setting system clock to 2026-10-28 17:23:53 UTC (1793208233)
+[    1.335385] Initalizing network drop monitor service
+[    1.337001] Freeing unused kernel memory: 592k freed
+[    1.411358] Write protecting the kernel read-only data: 4240k
+ENTROPY_STATUS 0
+XMTR_VM_BEGIN
+Linux (none) 2.6.32-5-amd64 #1 SMP Mon Feb 29 00:33:51 UTC 2016 x86_64 GNU/Linux
+              total         used         free       shared      buffers
+  Mem:       250572        44504       206068            0            0
+ Swap:            0            0            0
+Total:       250572        44504       206068
+TEST_VERSION /xmtrfixed64
+xmtr 0.3.0
+STATUS 0
+TEST_TRACE /xmtrfixed64
+{
+  "schema": 1,
+  "client": {
+    "name": "xmtr",
+    "version": "0.3.0",
+    "os": "linux",
+    "arch": "x86_64"
+  },
+  "shareOrigin": true,
+  "routes": [
+    {
+      "target": "127.0.0.1",
+      "destination": "127.0.0.1",
+      "protocol": "icmp",
+      "family": 4,
+      "startedAt": "2026-10-28T17:23:53.920Z",
+      "durationMs": 1248,
+      "rounds": 1,
+      "reached": true,
+      "hops": [
+        {
+          "ttl": 1,
+          "hosts": [
+            {
+              "ip": "127.0.0.1",
+              "replies": 1
+            }
+          ],
+          "sent": 1,
+          "recv": 1,
+          "lossPct": 0.0,
+          "lastMs": 29.428,
+          "avgMs": 29.428,
+          "bestMs": 29.428,
+          "worstMs": 29.428,
+          "stdevMs": 0.0,
+          "samplesMs": [
+            29.428
+          ]
+        }
+      ]
+    }
+  ]
+}
+STATUS 0
+TEST_HUGE_TIME /xmtrfixed64
+{
+  "schema": 1,
+  "client": {
+    "name": "xmtr",
+    "version": "0.3.0",
+    "os": "linux",
+    "arch": "x86_64"
+  },
+  "shareOrigin": true,
+  "routes": [
+    {
+      "target": "127.0.0.1",
+      "destination": "127.0.0.1",
+      "protocol": "icmp",
+      "family": 4,
+      "startedAt": "2026-10-28T17:23:55.266Z",
+      "durationMs": 5116,
+      "rounds": 5,
+      "reached": true,
+      "hops": [
+        {
+          "ttl": 1,
+          "hosts": [
+            {
+              "ip": "127.0.0.1",
+              "replies": 5
+            }
+          ],
+          "sent": 5,
+          "recv": 5,
+          "lossPct": 0.0,
+          "lastMs": 4.709,
+          "avgMs": 3.022,
+          "bestMs": 2.052,
+          "worstMs": 4.709,
+          "stdevMs": 0.936,
+          "samplesMs": [
+            3.402,
+            2.653,
+            2.052,
+            2.295,
+            4.709
+          ]
+        }
+      ]
+    }
+  ]
+}
+STATUS 0
+TEST_PARALLEL /xmtrfixed64
+STATUS 0
+XMTR_VM_END
+[    9.678184] ACPI: Preparing to enter system sleep state S5
+[    9.680571] Disabling non-boot CPUs ...
+[    9.836752] CPU 1 is now offline
+[    9.836938] SMP alternatives: switching to UP code
+[    9.930932] Power down.

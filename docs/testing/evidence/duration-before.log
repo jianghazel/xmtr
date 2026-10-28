@@ -1,0 +1,23 @@
+   Compiling xmtr v0.3.0 (/workspace/scratch/d84be7c262ac/xmtr)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 4.33s
+     Running unittests src/main.rs (target/debug/deps/xmtr-939745dcdf55705a)
+
+running 2 tests
+test runner::tests::round_budget_keeps_the_partial_round_and_final_poll ... ok
+test runner::tests::round_budget_caps_durations_larger_than_usize_rounds ... FAILED
+
+failures:
+
+---- runner::tests::round_budget_caps_durations_larger_than_usize_rounds stdout ----
+
+thread 'runner::tests::round_budget_caps_durations_larger_than_usize_rounds' panicked at src/runner.rs:71:15:
+attempt to add with overflow
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    runner::tests::round_budget_caps_durations_larger_than_usize_rounds
+
+test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 19 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--bin xmtr`

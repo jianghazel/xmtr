@@ -1,0 +1,430 @@
+c[?7l[2J[0mSeaBIOS (version 1.16.3-debian-1.16.3-2)
+Booting from ROM...
+Probing EDD (edd=off to disable)... oc[?7l[2Jc[?7l[2J[    0.000000] Initializing cgroup subsys cpuset
+[    0.000000] Initializing cgroup subsys cpu
+[    0.000000] Linux version 2.6.32-5-amd64 (Debian 2.6.32-48squeeze20) (ben@decadent.org.uk) (gcc version 4.3.5 (Debian 4.3.5-4) ) #1 SMP Mon Feb 29 00:33:51 UTC 2016
+[    0.000000] Command line: console=ttyS0 rdinit=/init panic=-1
+[    0.000000] KERNEL supported cpus:
+[    0.000000]   Intel GenuineIntel
+[    0.000000]   AMD AuthenticAMD
+[    0.000000]   Centaur CentaurHauls
+[    0.000000] BIOS-provided physical RAM map:
+[    0.000000]  BIOS-e820: 0000000000000000 - 000000000009fc00 (usable)
+[    0.000000]  BIOS-e820: 000000000009fc00 - 00000000000a0000 (reserved)
+[    0.000000]  BIOS-e820: 00000000000f0000 - 0000000000100000 (reserved)
+[    0.000000]  BIOS-e820: 0000000000100000 - 0000000003fe0000 (usable)
+[    0.000000]  BIOS-e820: 0000000003fe0000 - 0000000004000000 (reserved)
+[    0.000000]  BIOS-e820: 00000000fffc0000 - 0000000100000000 (reserved)
+[    0.000000]  BIOS-e820: 000000fd00000000 - 0000010000000000 (reserved)
+[    0.000000] DMI not present or invalid.
+[    0.000000] last_pfn = 0x3fe0 max_arch_pfn = 0x400000000
+[    0.000000] x86 PAT enabled: cpu 0, old 0x7040600070406, new 0x7010600070106
+[    0.000000] init_memory_mapping: 0000000000000000-0000000003fe0000
+[    0.000000] RAMDISK: 03a26000 - 03fdf25a
+[    0.000000] ACPI: RSDP 00000000000f5290 00014 (v00 BOCHS )
+[    0.000000] ACPI: RSDT 0000000003fe1ce5 00034 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.000000] ACPI: FACP 0000000003fe1b91 00074 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.000000] ACPI: DSDT 0000000003fe0040 01B51 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.000000] ACPI: FACS 0000000003fe0000 00040
+[    0.000000] ACPI: APIC 0000000003fe1c05 00080 (v03 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.000000] ACPI: HPET 0000000003fe1c85 00038 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.000000] ACPI: WAET 0000000003fe1cbd 00028 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.000000] No NUMA configuration found
+[    0.000000] Faking a node at 0000000000000000-0000000003fe0000
+[    0.000000] Bootmem setup node 0 0000000000000000-0000000003fe0000
+[    0.000000]   NODE_DATA [0000000000009000 - 0000000000010fff]
+[    0.000000]   bootmap [0000000000011000 -  00000000000117ff] pages 1
+[    0.000000] (6 early reservations) ==> bootmem [0000000000 - 0003fe0000]
+[    0.000000]   #0 [0000000000 - 0000001000]   BIOS data page ==> [0000000000 - 0000001000]
+[    0.000000]   #1 [0000006000 - 0000008000]       TRAMPOLINE ==> [0000006000 - 0000008000]
+[    0.000000]   #2 [0001000000 - 00016da5c4]    TEXT DATA BSS ==> [0001000000 - 00016da5c4]
+[    0.000000]   #3 [0003a26000 - 0003fdf25a]          RAMDISK ==> [0003a26000 - 0003fdf25a]
+[    0.000000]   #4 [000009fc00 - 0000100000]    BIOS reserved ==> [000009fc00 - 0000100000]
+[    0.000000]   #5 [0000008000 - 0000009000]          PGTABLE ==> [0000008000 - 0000009000]
+[    0.000000] found SMP MP-table at [ffff8800000f5480] f5480
+[    0.000000] Zone PFN ranges:
+[    0.000000]   DMA      0x00000000 -> 0x00001000
+[    0.000000]   DMA32    0x00001000 -> 0x00100000
+[    0.000000]   Normal   0x00100000 -> 0x00100000
+[    0.000000] Movable zone start PFN for each node
+[    0.000000] early_node_map[2] active PFN ranges
+[    0.000000]     0: 0x00000000 -> 0x0000009f
+[    0.000000]     0: 0x00000100 -> 0x00003fe0
+[    0.000000] ACPI: PM-Timer IO Port: 0x608
+[    0.000000] ACPI: LAPIC (acpi_id[0x00] lapic_id[0x00] enabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x01] lapic_id[0x01] enabled)
+[    0.000000] ACPI: LAPIC_NMI (acpi_id[0xff] dfl dfl lint[0x1])
+[    0.000000] ACPI: IOAPIC (id[0x00] address[0xfec00000] gsi_base[0])
+[    0.000000] IOAPIC[0]: apic_id 0, version 32, address 0xfec00000, GSI 0-23
+[    0.000000] ACPI: INT_SRC_OVR (bus 0 bus_irq 0 global_irq 2 dfl dfl)
+[    0.000000] ACPI: INT_SRC_OVR (bus 0 bus_irq 5 global_irq 5 high level)
+[    0.000000] ACPI: INT_SRC_OVR (bus 0 bus_irq 9 global_irq 9 high level)
+[    0.000000] ACPI: INT_SRC_OVR (bus 0 bus_irq 10 global_irq 10 high level)
+[    0.000000] ACPI: INT_SRC_OVR (bus 0 bus_irq 11 global_irq 11 high level)
+[    0.000000] Using ACPI (MADT) for SMP configuration information
+[    0.000000] ACPI: HPET id: 0x8086a201 base: 0xfed00000
+[    0.000000] SMP: Allowing 2 CPUs, 0 hotplug CPUs
+[    0.000000] PM: Registered nosave memory: 000000000009f000 - 00000000000a0000
+[    0.000000] PM: Registered nosave memory: 00000000000a0000 - 00000000000f0000
+[    0.000000] PM: Registered nosave memory: 00000000000f0000 - 0000000000100000
+[    0.000000] Allocating PCI resources starting at 4000000 (gap: 4000000:fbfc0000)
+[    0.000000] Booting paravirtualized kernel on bare hardware
+[    0.000000] NR_CPUS:512 nr_cpumask_bits:512 nr_cpu_ids:2 nr_node_ids:1
+[    0.000000] PERCPU: Embedded 29 pages/cpu @ffff880001800000 s86296 r8192 d24296 u1048576
+[    0.000000] pcpu-alloc: s86296 r8192 d24296 u1048576 alloc=1*2097152
+[    0.000000] pcpu-alloc: [0] 0 1
+[    0.000000] Built 1 zonelists in Node order, mobility grouping on.  Total pages: 15931
+[    0.000000] Policy zone: DMA32
+[    0.000000] Kernel command line: console=ttyS0 rdinit=/init panic=-1
+[    0.000000] PID hash table entries: 256 (order: -1, 2048 bytes)
+[    0.000000] Initializing CPU#0
+[    0.000000] Checking aperture...
+[    0.000000] No AGP bridge found
+[    0.000000] Memory: 49560k/65408k available (3091k kernel code, 388k absent, 15460k reserved, 2040k data, 592k init)
+[    0.000000] SLUB: Genslabs=14, HWalign=64, Order=0-3, MinObjects=0, CPUs=2, Nodes=1
+[    0.000000] Hierarchical RCU implementation.
+[    0.000000] NR_IRQS:4352 nr_irqs:424
+[    0.000000] Console: colour *CGA 80x25
+[    0.000000] console [ttyS0] enabled
+[    0.000000] Fast TSC calibration failed
+[    0.000000] TSC: Unable to calibrate against PIT
+[    0.000000] TSC: using HPET reference calibration
+[    0.000000] Detected 2596.049 MHz processor.
+[    0.024758] Calibrating delay loop (skipped), value calculated using timer frequency.. 5192.09 BogoMIPS (lpj=10384196)
+[    0.026175] Security Framework initialized
+[    0.029724] SELinux:  Disabled at boot.
+[    0.030827] Dentry cache hash table entries: 8192 (order: 4, 65536 bytes)
+[    0.031139] Inode-cache hash table entries: 4096 (order: 3, 32768 bytes)
+[    0.031397] Mount-cache hash table entries: 256
+[    0.038108] Initializing cgroup subsys ns
+[    0.038360] Initializing cgroup subsys cpuacct
+[    0.038471] Initializing cgroup subsys devices
+[    0.038583] Initializing cgroup subsys freezer
+[    0.038668] Initializing cgroup subsys net_cls
+[    0.039819] CPU: L1 I Cache: 64K (64 bytes/line), D cache 64K (64 bytes/line)
+[    0.040069] CPU: L2 Cache: 512K (64 bytes/line)
+[    0.040252] CPU 0/0x0 -> Node 0
+[    0.041429] CPU: Physical Processor ID: 0
+[    0.041512] CPU: Processor Core ID: 0
+[    0.041696] mce: CPU supports 10 MCE banks
+[    0.042364] using C1E aware idle routine
+[    0.042493] Performance Events: AMD PMU driver.
+[    0.042744] ... version:                0
+[    0.042801] ... bit width:              48
+[    0.042879] ... generic registers:      4
+[    0.042968] ... value mask:             0000ffffffffffff
+[    0.043042] ... max period:             00007fffffffffff
+[    0.043116] ... fixed-purpose events:   0
+[    0.043174] ... event mask:             000000000000000f
+[    0.057548] ACPI: Core revision 20090903
+[    0.080183] Setting APIC routing to flat
+[    0.084681] ..TIMER: vector=0x30 apic1=0 pin1=2 apic2=-1 pin2=-1
+[    0.125750] CPU0: AMD QEMU Virtual CPU version 2.5+ stepping 01
+[    0.130799] Booting processor 1 APIC 0x1 ip 0x6000
+[    0.028001] Initializing CPU#1
+[    0.028001] CPU: L1 I Cache: 64K (64 bytes/line), D cache 64K (64 bytes/line)
+[    0.028001] CPU: L2 Cache: 512K (64 bytes/line)
+[    0.028001] CPU 1/0x1 -> Node 0
+[    0.028001] CPU: Physical Processor ID: 0
+[    0.028001] CPU: Processor Core ID: 1
+[    0.224993] CPU1: AMD QEMU Virtual CPU version 2.5+ stepping 01
+[    0.226536] Brought up 2 CPUs
+[    0.226699] Total of 2 processors activated (10406.00 BogoMIPS).
+[    0.237025] devtmpfs: initialized
+[    0.252407] regulator: core version 0.5
+[    0.253454] NET: Registered protocol family 16
+[    0.259550] ACPI: bus type pci registered
+[    0.260594] PCI: Using configuration type 1 for base access
+[    0.261537] mtrr: your CPUs had inconsistent fixed MTRR settings
+[    0.261704] mtrr: your CPUs had inconsistent variable MTRR settings
+[    0.261867] mtrr: your CPUs had inconsistent MTRRdefType settings
+[    0.262042] mtrr: probably your BIOS does not setup all CPUs.
+[    0.262208] mtrr: corrected configuration.
+[    0.264560] bio: create slab <bio-0> at 0
+[    0.289365] ACPI: Interpreter enabled
+[    0.289680] ACPI: (supports S0 S3 S4 S5)
+[    0.290841] ACPI: Using IOAPIC for interrupt routing
+[    0.311038] ACPI: No dock devices found.
+[    0.312809] ACPI: PCI Root Bridge [PCI0] (0000:00)
+[    0.321205] pci 0000:00:01.3: quirk: region 0600-063f claimed by PIIX4 ACPI
+[    0.321502] pci 0000:00:01.3: quirk: region 0700-070f claimed by PIIX4 SMB
+[    0.592498] ACPI: PCI Interrupt Link [LNKA] (IRQs 5 *10 11)
+[    0.593673] ACPI: PCI Interrupt Link [LNKB] (IRQs 5 *10 11)
+[    0.594204] ACPI: PCI Interrupt Link [LNKC] (IRQs 5 10 *11)
+[    0.594790] ACPI: PCI Interrupt Link [LNKD] (IRQs 5 10 *11)
+[    0.595212] ACPI: PCI Interrupt Link [LNKS] (IRQs *9)
+[    0.597647] vgaarb: loaded
+[    0.600469] PCI: Using ACPI for IRQ routing
+[    0.604664] HPET: 3 timers in total, 0 timers will be used for per-cpu timer
+[    0.605052] hpet0: at MMIO 0xfed00000, IRQs 2, 8, 0
+[    0.605254] hpet0: 3 comparators, 64-bit 100.000000 MHz counter
+[    0.612342] Switching to clocksource hpet
+[    0.625702] pnp: PnP ACPI init
+[    0.625946] ACPI: bus type pnp registered
+[    0.630028] pnp: PnP ACPI: found 11 devices
+[    0.630192] ACPI: ACPI bus type pnp unregistered
+[    0.637584] NET: Registered protocol family 2
+[    0.638633] IP route cache hash table entries: 512 (order: 0, 4096 bytes)
+[    0.641581] TCP established hash table entries: 2048 (order: 3, 32768 bytes)
+[    0.641901] TCP bind hash table entries: 2048 (order: 3, 32768 bytes)
+[    0.642137] TCP: Hash tables configured (established 2048 bind 2048)
+[    0.642381] TCP reno registered
+[    0.643360] NET: Registered protocol family 1
+[    0.643649] pci 0000:00:00.0: Limiting direct PCI/PCI transfers
+[    0.643860] pci 0000:00:01.0: PIIX3: Enabling Passive Release
+[    0.644182] pci 0000:00:01.0: Activating ISA DMA hang workarounds
+[    0.646950] Unpacking initramfs...
+[    0.893189] Freeing initrd memory: 5860k freed
+[    0.902962] audit: initializing netlink socket (disabled)
+[    0.903769] type=2000 audit(1793207915.900:1): initialized
+[    0.912369] HugeTLB registered 2 MB page size, pre-allocated 0 pages
+[    0.919792] VFS: Disk quotas dquot_6.5.2
+[    0.920221] Dquot-cache hash table entries: 512 (order 0, 4096 bytes)
+[    0.925486] msgmni has been set to 108
+[    0.929802] alg: No test for stdrng (krng)
+[    0.930599] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 253)
+[    0.930912] io scheduler noop registered
+[    0.931036] io scheduler anticipatory registered
+[    0.931160] io scheduler deadline registered
+[    0.931529] io scheduler cfq registered (default)
+[    0.941392] Linux agpgart interface v0.103
+[    0.941719] Serial: 8250/16550 driver, 4 ports, IRQ sharing enabled
+[    0.942987] serial8250: ttyS0 at I/O 0x3f8 (irq = 4) is a 16550A
+[    0.946372] 00:08: ttyS0 at I/O 0x3f8 (irq = 4) is a 16550A
+[    0.947596] input: Macintosh mouse button emulation as /devices/virtual/input/input0
+[    0.948788] PNP: PS/2 Controller [PNP0303:KBD,PNP0f13:MOU] at 0x60,0x64 irq 1,12
+[    0.950956] serio: i8042 KBD port at 0x60,0x64 irq 1
+[    0.951257] serio: i8042 AUX port at 0x60,0x64 irq 12
+[    0.952269] mice: PS/2 mouse device common for all mice
+[    0.952757] rtc_cmos 00:09: RTC can wake from S4
+[    0.953928] rtc_cmos 00:09: rtc core: registered rtc_cmos as rtc0
+[    0.954250] input: AT Translated Set 2 keyboard as /devices/platform/i8042/serio0/input/input1
+[    0.954669] rtc0: alarms up to one day, y3k, 242 bytes nvram, hpet irqs
+[    0.955053] cpuidle: using governor ladder
+[    0.955271] cpuidle: using governor menu
+[    0.955564] No iBFT detected.
+[    0.956805] TCP cubic registered
+[    0.957433] NET: Registered protocol family 10
+[    0.964430] Mobile IPv6
+[    0.964710] NET: Registered protocol family 17
+[    0.966045] registered taskstats version 1
+[    0.967554] rtc_cmos 00:09: setting system clock to 2026-10-28 17:18:36 UTC (1793207916)
+[    0.967986] Initalizing network drop monitor service
+[    0.969282] Freeing unused kernel memory: 592k freed
+[    1.041272] Write protecting the kernel read-only data: 4240k
+ENTROPY_STATUS 0
+XMTR_VM_BEGIN
+Linux (none) 2.6.32-5-amd64 #1 SMP Mon Feb 29 00:33:51 UTC 2016 x86_64 GNU/Linux
+              total         used         free       shared      buffers
+  Mem:        56016        15032        40984            0            0
+ Swap:            0            0            0
+Total:        56016        15032        40984
+TEST_VERSION /xmtr32
+xmtr 0.3.0
+STATUS 0
+TEST_TRACE /xmtr32
+{
+  "schema": 1,
+  "client": {
+    "name": "xmtr",
+    "version": "0.3.0",
+    "os": "linux",
+    "arch": "x86"
+  },
+  "shareOrigin": true,
+  "routes": [
+    {
+      "target": "127.0.0.1",
+      "destination": "127.0.0.1",
+      "protocol": "icmp",
+      "family": 4,
+      "startedAt": "2026-10-28T17:18:36.772Z",
+      "durationMs": 1025,
+      "rounds": 1,
+      "reached": true,
+      "hops": [
+        {
+          "ttl": 1,
+          "hosts": [
+            {
+              "ip": "127.0.0.1",
+              "replies": 1
+            }
+          ],
+          "sent": 1,
+          "recv": 1,
+          "lossPct": 0.0,
+          "lastMs": 8.103,
+          "avgMs": 8.103,
+          "bestMs": 8.103,
+          "worstMs": 8.103,
+          "stdevMs": 0.0,
+          "samplesMs": [
+            8.103
+          ]
+        }
+      ]
+    }
+  ]
+}
+STATUS 0
+TEST_HUGE_TIME /xmtr32
+{
+  "schema": 1,
+  "client": {
+    "name": "xmtr",
+    "version": "0.3.0",
+    "os": "linux",
+    "arch": "x86"
+  },
+  "shareOrigin": true,
+  "routes": [
+    {
+      "target": "127.0.0.1",
+      "destination": "127.0.0.1",
+      "protocol": "icmp",
+      "family": 4,
+      "startedAt": "2026-10-28T17:18:37.828Z",
+      "durationMs": 1006,
+      "rounds": 1,
+      "reached": true,
+      "hops": [
+        {
+          "ttl": 1,
+          "hosts": [
+            {
+              "ip": "127.0.0.1",
+              "replies": 1
+            }
+          ],
+          "sent": 1,
+          "recv": 1,
+          "lossPct": 0.0,
+          "lastMs": 0.388,
+          "avgMs": 0.388,
+          "bestMs": 0.388,
+          "worstMs": 0.388,
+          "stdevMs": 0.0,
+          "samplesMs": [
+            0.388
+          ]
+        }
+      ]
+    }
+  ]
+}
+STATUS 0
+TEST_PARALLEL /xmtr32
+error 127.0.0.1 IPv4/ICMP: no probe was answered
+error 127.0.0.1 IPv4/ICMP: no probe was answered
+error 127.0.0.1 IPv4/ICMP: no probe was answered
+error 127.0.0.1 IPv4/ICMP: no probe was answered
+error 127.0.0.1 IPv4/ICMP: no probe was answered
+error 127.0.0.1 IPv4/ICMP: no probe was answered
+error 127.0.0.1 IPv4/ICMP: no probe was answered
+error 127.0.0.1 IPv4/ICMP: no probe was answered
+error 127.0.0.1 IPv4/ICMP: no probe was answered
+STATUS 0
+TEST_VERSION /xmtr64
+xmtr 0.3.0
+STATUS 0
+TEST_TRACE /xmtr64
+{
+  "schema": 1,
+  "client": {
+    "name": "xmtr",
+    "version": "0.3.0",
+    "os": "linux",
+    "arch": "x86_64"
+  },
+  "shareOrigin": true,
+  "routes": [
+    {
+      "target": "127.0.0.1",
+      "destination": "127.0.0.1",
+      "protocol": "icmp",
+      "family": 4,
+      "startedAt": "2026-10-28T17:18:40.635Z",
+      "durationMs": 1215,
+      "rounds": 1,
+      "reached": true,
+      "hops": [
+        {
+          "ttl": 1,
+          "hosts": [
+            {
+              "ip": "127.0.0.1",
+              "replies": 1
+            }
+          ],
+          "sent": 1,
+          "recv": 1,
+          "lossPct": 0.0,
+          "lastMs": 2.801,
+          "avgMs": 2.801,
+          "bestMs": 2.801,
+          "worstMs": 2.801,
+          "stdevMs": 0.0,
+          "samplesMs": [
+            2.801
+          ]
+        }
+      ]
+    }
+  ]
+}
+STATUS 0
+TEST_HUGE_TIME /xmtr64
+{
+  "schema": 1,
+  "client": {
+    "name": "xmtr",
+    "version": "0.3.0",
+    "os": "linux",
+    "arch": "x86_64"
+  },
+  "shareOrigin": true,
+  "routes": [
+    {
+      "target": "127.0.0.1",
+      "destination": "127.0.0.1",
+      "protocol": "icmp",
+      "family": 4,
+      "startedAt": "2026-10-28T17:18:41.883Z",
+      "durationMs": 1009,
+      "rounds": 1,
+      "reached": true,
+      "hops": [
+        {
+          "ttl": 1,
+          "hosts": [
+            {
+              "ip": "127.0.0.1",
+              "replies": 1
+            }
+          ],
+          "sent": 1,
+          "recv": 1,
+          "lossPct": 0.0,
+          "lastMs": 0.431,
+          "avgMs": 0.431,
+          "bestMs": 0.431,
+          "worstMs": 0.431,
+          "stdevMs": 0.0,
+          "samplesMs": [
+            0.431
+          ]
+        }
+      ]
+    }
+  ]
+}
+STATUS 0
+TEST_PARALLEL /xmtr64
+STATUS 0
+XMTR_VM_END
+[    8.933427] ACPI: Preparing to enter system sleep state S5
+[    8.934776] Disabling non-boot CPUs ...
+[    9.088663] CPU 1 is now offline
+[    9.088850] SMP alternatives: switching to UP code
+[    9.168751] Power down.

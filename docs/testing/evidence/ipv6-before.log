@@ -1,0 +1,28 @@
+   Compiling trippy-core v0.13.0 (/workspace/scratch/d84be7c262ac/xmtr-ipv6/vendor/trippy-core)
+   Compiling xmtr-release v0.3.0 (/workspace/scratch/d84be7c262ac/xmtr-ipv6/crates/release)
+   Compiling xmtr v0.3.0 (/workspace/scratch/d84be7c262ac/xmtr-ipv6)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 15.74s
+     Running unittests src/main.rs (../xmtr/target/debug/deps/xmtr-939745dcdf55705a)
+
+running 1 test
+test upload::tests::custom_resolver_accepts_an_ipv6_gateway_literal ... FAILED
+
+failures:
+
+---- upload::tests::custom_resolver_accepts_an_ipv6_gateway_literal stdout ----
+
+thread 'upload::tests::custom_resolver_accepts_an_ipv6_gateway_literal' panicked at src/upload.rs:107:56:
+called `Result::unwrap()` on an `Err` value: resolving [::1]
+
+Caused by:
+    0: protocol error: Label contains invalid characters: Err(Errors)
+    1: Label contains invalid characters: Err(Errors)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    upload::tests::custom_resolver_accepts_an_ipv6_gateway_literal
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 19 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--bin xmtr`

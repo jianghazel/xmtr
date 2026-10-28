@@ -1,0 +1,21 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.35s
+     Running unittests src/main.rs (target/debug/deps/xmtr-939745dcdf55705a)
+
+running 2 tests
+test stress::board_and_convergence_load ... board: 1 rows, 20 snapshots: 54.482µs
+board: 64 rows, 20 snapshots: 187.342µs
+board: 4096 rows, 20 snapshots: 19.538847ms
+board: 65536 rows, 20 snapshots: 352.374143ms
+convergence: 2000 rounds, 4064 responders: 3.91355062s
+ok
+test stress::large_route_output_and_serialization ... table: 254 hops, 8 hosts per hop, 722908 bytes: 125.298161ms
+JSON: 64 routes, 51252659 bytes, encode and decode: 4.878092252s
+ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 22 filtered out; finished in 9.69s
+
+     Running tests/cli.rs (target/debug/deps/cli-c3303d8d17db83d6)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 3 filtered out; finished in 0.00s

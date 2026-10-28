@@ -1,0 +1,22 @@
+   Compiling xmtr-release v0.3.0 (/workspace/scratch/d84be7c262ac/xmtr-extraction/crates/release)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.14s
+     Running unittests src/lib.rs (../xmtr/target/debug/deps/xmtr_release-062d35060e0757dc)
+
+running 1 test
+test tests::rejects_a_binary_larger_than_the_download_limit ... FAILED
+
+failures:
+
+---- tests::rejects_a_binary_larger_than_the_download_limit stdout ----
+
+thread 'tests::rejects_a_binary_larger_than_the_download_limit' panicked at crates/release/src/lib.rs:385:13:
+accepted an oversized binary
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    tests::rejects_a_binary_larger_than_the_download_limit
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 6 filtered out; finished in 1.70s
+
+error: test failed, to rerun pass `-p xmtr-release --lib`
