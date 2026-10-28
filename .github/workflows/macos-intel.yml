@@ -1,0 +1,14 @@
+name: macOS Intel boundary tests
+on:
+  push:
+    branches: [audit/macos-intel]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: macos-15-intel
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+      - uses: dtolnay/rust-toolchain@stable
+      - run: cargo test --workspace --locked
