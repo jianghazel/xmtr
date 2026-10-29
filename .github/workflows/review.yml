@@ -1,0 +1,47 @@
+name: MSRV review verification
+
+on:
+  push:
+    branches: [ci/review-pr5, ci/review-pr6, ci/review-pr7]
+
+permissions:
+  contents: read
+
+jobs:
+  msrv:
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-latest]
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+          ref: 1c81c6d5bad121cb3f369662eab4f5e62589aa42
+      - uses: dtolnay/rust-toolchain@1.88.0
+        with:
+          components: rustfmt, clippy
+      - run: rustc --version
+      - run: cargo fmt --all --check
+      - run: cargo clippy --workspace --all-targets --locked -- -D warnings
+      - run: cargo test --workspace --locked
+
+  i686:
+    if: github.ref_name == 'ci/review-pr5'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+          ref: 1c81c6d5bad121cb3f369662eab4f5e62589aa42
+      - uses: dtolnay/rust-toolchain@1.88.0
+        with:
+          targets: i686-unknown-linux-musl
+      - uses: mlugg/setup-zig@v2
+        with:
+          version: 0.14.1
+      - run: pip install cargo-zigbuild==0.24.0
+      - run: 'cargo-zigbuild test --locked --target i686-unknown-linux-musl -p xmtr runner::'
